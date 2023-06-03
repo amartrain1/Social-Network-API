@@ -1,6 +1,4 @@
-const { User, Thought } = require('../models')
-
-/*removeThought */
+const { User, Thought } = require('../models');
 
 module.exports = {
     // Get all thoughts
