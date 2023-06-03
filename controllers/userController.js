@@ -15,12 +15,11 @@ module.exports = {
         try {
             const user = await User.findOne({ _id: req.params.userId })
                 .select('-__v')
-                .populate('friends')
                 .populate('thoughts');
             if (!user) {
-                return res.status(404).json({ message: 'No corresponding user with that id'});
+                return res.status(404).json({ message: 'No corresponding user with that id' });
             }
-            res.status(500).json(err)
+            res.json(user)
         } catch (err) {
             res.status(500).json(err)
         }
@@ -29,6 +28,11 @@ module.exports = {
     async createUser(req, res) {
         try {
             const user = await User.create(req.body);
+        //! req.body example
+          /*{
+                "username": "lernantino",
+                "email": "lernantino@gmail.com"
+            }*/
             res.json(user);
         } catch (err) {
             res.status(500).json(err)
@@ -42,6 +46,7 @@ module.exports = {
                 { $set: req.body },
                 { new: true }
             )
+            res.json(user)
         } catch (err) {
             res.status(500).json(err)
         }
@@ -51,7 +56,7 @@ module.exports = {
         try {
             const user = await User.findOneAndDelete({ _id: req.params.userId });
             if (!user) {
-                return res.status(404).json({ message: 'No corresponding user with that id'});
+                return res.status(404).json({ message: 'No corresponding user with that id' });
             }
             res.json(`user ${user.username} deleted`)
         } catch (err) {
