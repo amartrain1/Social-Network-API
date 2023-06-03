@@ -24,12 +24,6 @@ const userModel = new Schema(
                 ref: 'thought'
             },
         ],
-        friends: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'user'
-            },
-        ],
     },
     {
         toJSON: {
