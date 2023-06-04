@@ -12,7 +12,7 @@ const thoughtSchema = new Schema(
             // Gets the current date using built in Date function, and formats it to local time zone
             type: Date,
             default: Date.now,
-            get: date => date.toLocalDateString(),
+            get: date => date.toLocaleDateString(),
         },
         username: {
             type: String,
